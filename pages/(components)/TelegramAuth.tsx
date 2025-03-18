@@ -27,6 +27,14 @@ export default function TelegramAuth() {
     const tg = window.Telegram?.WebApp;
 
     if (tg) {
+      tg.ready();
+      console.log("initData:", tg.initData);
+      console.log("user:", tg.initDataUnsafe?.user);
+    } else {
+      alert("Telegram WebApp not detected. Please open in Telegram.");
+    }
+
+    if (tg) {
       setIsTelegramEnv(true);
       tg.ready(); // Signals Telegram Mini App is ready
       setIsReady(true);
