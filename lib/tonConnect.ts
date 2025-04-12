@@ -7,7 +7,8 @@ export function getTonConnect(): TonConnect | null {
 
   if (!tonConnectInstance) {
     tonConnectInstance = new TonConnect({
-      manifestUrl: "http://localhost:3000/tonconnect-manifest.json",
+      manifestUrl:
+        "https://auth-test-ashen.vercel.app/tonconnect-manifest.json",
     });
   }
 

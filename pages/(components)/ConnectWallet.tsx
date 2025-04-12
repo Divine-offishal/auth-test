@@ -6,6 +6,7 @@ import {
   WalletInfoRemote,
 } from "@tonconnect/ui-react";
 import { getTonConnect } from "@/lib/tonConnect";
+import Head from "next/head";
 
 export default function ConnectWallet() {
   const [tonConnectUI] = useTonConnectUI();
@@ -32,24 +33,29 @@ export default function ConnectWallet() {
   };
 
   return (
-    <div>
-      <button
-        onClick={handleConnect}
-        className="px-4 py-2 rounded-lg bg-green-700 text-white hover:bg-green-800 transition"
-      >
-        Connect TON Wallet
-      </button>
+    <>
+      <Head>
+        <link rel="tonconnect-manifest" href="/tonconnect-manifest.json" />
+      </Head>
+      <div>
+        <button
+          onClick={handleConnect}
+          className="px-4 py-2 rounded-lg bg-green-700 text-white hover:bg-green-800 transition"
+        >
+          Connect TON Wallet
+        </button>
 
-      {walletInfo && (
-        <div className="mt-4">
-          <p>
-            <strong>Address:</strong> {walletInfo.account.address}
-          </p>
-          <p>
-            <strong>Network:</strong> {walletInfo.account.chain}
-          </p>
-        </div>
-      )}
-    </div>
+        {walletInfo && (
+          <div className="mt-4">
+            <p>
+              <strong>Address:</strong> {walletInfo.account.address}
+            </p>
+            <p>
+              <strong>Network:</strong> {walletInfo.account.chain}
+            </p>
+          </div>
+        )}
+      </div>
+    </>
   );
 }
