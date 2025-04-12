@@ -1,7 +1,10 @@
+"use client";
 import Image from "next/image";
 import { Geist, Geist_Mono } from "next/font/google";
 import TelegramAuth from "./(components)/TelegramAuth";
 import Script from "next/script";
+import ConnectWallet from "./(components)/ConnectWallet";
+import { TonConnectUIProvider } from "@tonconnect/ui-react";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -15,12 +18,15 @@ const geistMono = Geist_Mono({
 
 export default function Home() {
   return (
-    <main>
-      <TelegramAuth />
-      <Script
-        src="https://telegram.org/js/telegram-web-app.js"
-        strategy="beforeInteractive"
-      />
-    </main>
+    <TonConnectUIProvider manifestUrl="http://localhost:3000/tonconnect-manifest.json">
+      <main>
+        <ConnectWallet />
+        <TelegramAuth />
+        <Script
+          src="https://telegram.org/js/telegram-web-app.js"
+          strategy="beforeInteractive"
+        />
+      </main>
+    </TonConnectUIProvider>
   );
 }
