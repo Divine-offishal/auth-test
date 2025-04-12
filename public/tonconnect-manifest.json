@@ -1,7 +1,7 @@
 {
   "url": "https://auth-test-ashen.vercel.app",
   "name": "My Local TON App",
-  "iconUrl": "https://auth-test-ashen.vercel.app/testt.png",
+  "iconUrl": "https://xarme-frontend.vercel.app/armeLogo.png",
   "termsOfUseUrl": "https://auth-test-ashen.vercel.app/terms",
   "privacyPolicyUrl": "https://auth-test-ashen.vercel.app/privacy",
   "platforms": ["web"]

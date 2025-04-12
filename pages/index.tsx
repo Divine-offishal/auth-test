@@ -18,7 +18,7 @@ const geistMono = Geist_Mono({
 
 export default function Home() {
   return (
-    <TonConnectUIProvider manifestUrl="http://localhost:3000/tonconnect-manifest.json">
+    <TonConnectUIProvider manifestUrl="https://auth-test-ashen.vercel.app/tonconnect-manifest.json">
       <main>
         <ConnectWallet />
         <TelegramAuth />

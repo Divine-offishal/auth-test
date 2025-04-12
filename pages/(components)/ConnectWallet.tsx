@@ -1,61 +1,47 @@
 "use client";
-import React, { useEffect, useState } from "react";
-import {
-  useTonConnectUI,
-  Wallet,
-  WalletInfoRemote,
-} from "@tonconnect/ui-react";
-import { getTonConnect } from "@/lib/tonConnect";
-import Head from "next/head";
+
+import React from "react";
+import { useTonConnectUI, useTonWallet } from "@tonconnect/ui-react";
 
 export default function ConnectWallet() {
   const [tonConnectUI] = useTonConnectUI();
-  const [walletInfo, setWalletInfo] = useState<any>(null);
-
-  useEffect(() => {
-    const tonConnect = getTonConnect();
-    if (!tonConnect) return;
-
-    tonConnect.restoreConnection();
-
-    tonConnect.onStatusChange((wallet: Wallet | null) => {
-      if (wallet) {
-        setWalletInfo(wallet);
-        console.log("Wallet connected:", wallet);
-      } else {
-        setWalletInfo(null);
-      }
-    });
-  }, []);
+  const wallet = useTonWallet();
 
   const handleConnect = () => {
-    tonConnectUI.openModal(); // triggers the wallet selection modal
+    tonConnectUI.openModal();
+  };
+
+  const handleDisconnect = () => {
+    tonConnectUI.disconnect();
   };
 
   return (
-    <>
-      <Head>
-        <link rel="tonconnect-manifest" href="/tonconnect-manifest.json" />
-      </Head>
-      <div>
+    <div>
+      {!wallet ? (
         <button
           onClick={handleConnect}
           className="px-4 py-2 rounded-lg bg-green-700 text-white hover:bg-green-800 transition"
         >
           Connect TON Wallet
         </button>
-
-        {walletInfo && (
-          <div className="mt-4">
+      ) : (
+        <div className="space-y-3">
+          <div>
             <p>
-              <strong>Address:</strong> {walletInfo.account.address}
+              <strong>Address:</strong> {wallet.account.address}
             </p>
             <p>
-              <strong>Network:</strong> {walletInfo.account.chain}
+              <strong>Network:</strong> {wallet.account.chain}
             </p>
           </div>
-        )}
-      </div>
-    </>
+          <button
+            onClick={handleDisconnect}
+            className="px-4 py-2 rounded-lg bg-red-600 text-white hover:bg-red-700 transition"
+          >
+            Disconnect Wallet
+          </button>
+        </div>
+      )}
+    </div>
   );
 }
