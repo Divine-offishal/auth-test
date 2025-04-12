@@ -1,8 +1,8 @@
 {
-  "url": "https://auth-test-ashen.vercel.app",
-  "name": "My Local TON App",
+  "url": "https://xarme-frontend.vercel.app",
+  "name": "X-Arme Collective",
   "iconUrl": "https://xarme-frontend.vercel.app/armeLogo.png",
-  "termsOfUseUrl": "https://auth-test-ashen.vercel.app/terms",
-  "privacyPolicyUrl": "https://auth-test-ashen.vercel.app/privacy",
+  "termsOfUseUrl": "https://xarme-frontend.vercel.app/terms",
+  "privacyPolicyUrl": "https://xarme-frontend.vercel.app/privacy",
   "platforms": ["web"]
 }
